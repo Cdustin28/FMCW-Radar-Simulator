@@ -6,12 +6,11 @@ import pytest
 
 os.environ.setdefault("QT_QPA_PLATFORM", "offscreen")
 pytest.importorskip("PySide6")
-pytest.importorskip("pyqtgraph")
+
+from fmcw_sim.gui import MainWindow  # noqa: E402  (pins pyqtgraph to PySide6)
 
 import pyqtgraph as pg  # noqa: E402
 from PySide6 import QtWidgets  # noqa: E402
-
-from fmcw_sim.gui import MainWindow  # noqa: E402
 from fmcw_sim.presets import PRESETS  # noqa: E402
 
 

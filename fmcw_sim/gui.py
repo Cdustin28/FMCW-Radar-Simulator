@@ -3,12 +3,18 @@
 from __future__ import annotations
 
 import copy
+import os
 import time
 from dataclasses import dataclass
 
 import numpy as np
-import pyqtgraph as pg
-from PySide6 import QtCore, QtGui, QtWidgets
+
+# pyqtgraph binds to the first Qt wrapper it finds (PyQt6 before PySide6), and
+# mixing two wrappers fails. Import PySide6 first and pin pyqtgraph to it.
+os.environ["PYQTGRAPH_QT_LIB"] = "PySide6"
+from PySide6 import QtCore, QtGui, QtWidgets  # noqa: E402
+
+import pyqtgraph as pg  # noqa: E402
 
 from . import io
 from .config import WINDOWS, Scenario, Target
